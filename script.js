@@ -1,17 +1,15 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
 
-    const submitBtn = document.getElementById("submit");
-    const bookList = document.getElementById("book-list");
+    const submit = document.getElementById("submit");
+    const list = document.getElementById("book-list");
 
-    submitBtn.addEventListener("click", function () {
+    submit.addEventListener("click", () => {
 
         const title = document.getElementById("title").value.trim();
         const author = document.getElementById("author").value.trim();
         const isbn = document.getElementById("isbn").value.trim();
 
-        if (title === "" || author === "" || isbn === "") {
-            return; // no alert needed for tests
-        }
+        if (!title || !author || !isbn) return;
 
         const tr = document.createElement("tr");
 
@@ -22,16 +20,15 @@ document.addEventListener("DOMContentLoaded", function () {
             <td><button class="delete">X</button></td>
         `;
 
-        bookList.appendChild(tr);
+        list.appendChild(tr);
 
-        // clear fields
+        // clear input fields
         document.getElementById("title").value = "";
         document.getElementById("author").value = "";
         document.getElementById("isbn").value = "";
     });
 
-    // delete row
-    bookList.addEventListener("click", function (e) {
+    list.addEventListener("click", (e) => {
         if (e.target.classList.contains("delete")) {
             e.target.closest("tr").remove();
         }
